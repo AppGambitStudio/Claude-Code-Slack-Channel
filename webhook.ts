@@ -109,6 +109,12 @@ const app = new App({
 
 // Listen for all messages in channels the bot is invited to
 app.message(async ({ message, say }) => {
+    // If you configured a specific channel, ignore all others!
+    const allowedChannel = process.env.SLACK_CHANNEL_ID
+    if (allowedChannel && message.channel !== allowedChannel) {
+        return // Silently ignore messages outside the configured channel
+    }
+
     diskLog(`Received message event from channel ${message.channel}: ${JSON.stringify(message)}`)
 
     // Ignore messages from bots to prevent loops

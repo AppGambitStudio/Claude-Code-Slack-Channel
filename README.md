@@ -36,7 +36,8 @@ Run `npm install` in this directory to install the `@slack/bolt` and `tsx` depen
       ],
       "env": {
         "SLACK_APP_TOKEN": "xapp-...",
-        "SLACK_BOT_TOKEN": "xoxb-..."
+        "SLACK_BOT_TOKEN": "xoxb-...",
+        "SLACK_CHANNEL_ID": "C0..." // Optional: add a channel ID here so it only listens to one specific channel!
       }
     }
   }
