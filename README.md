@@ -49,6 +49,13 @@ Run `npm install` in this directory to install the `@slack/bolt` and `tsx` depen
 - Send a message in that channel, and it will seamlessly appear in Claude Code as context!
 - You can ask Claude Code directly to "Reply to that Slack message" and it will autonomously use the `send_slack_message` tool to post back.
 
+## ⚠️ Architecture Caveat: Global vs. Local Configuration
+Slack's Socket Mode allows multiple WebSocket connections using the identical App Token, and **load-balances (randomizes)** incoming messages across all connected clients. 
+
+Because of this:
+- **Global Configuration (`~/.claude.json`)**: If you have multiple Terminal windows open running Claude Code simultaneously, each window spawns its own MCP server. When you send a Slack message, Slack will randomly route it to only *one* of your active terminals.
+- **Local Configuration (`./.claude.json`)**: If you only want Slack messages to route uniquely to a specific project workspace, do not configure this server globally. Instead, configure the `mcpServers` block in a local `.claude.json` file inside that specific project folder so the webhook server is only spawned when you are actively working in that directory.
+
 ## Troubleshooting
 If messages aren't arriving:
 - Ensure you have invited the bot to the channel.
