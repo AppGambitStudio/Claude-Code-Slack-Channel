@@ -1,0 +1,24 @@
+{
+  "name": "claude-code-slack-channel",
+  "version": "1.0.0",
+  "description": "MCP Server over Slack Socket Mode for Claude Code",
+  "main": "webhook.ts",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx webhook.ts"
+  },
+  "keywords": [
+    "mcp",
+    "slack",
+    "claude",
+    "anthropic",
+    "socket-mode"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@slack/bolt": "^4.6.0",
+    "tsx": "^4.21.0"
+  }
+}
