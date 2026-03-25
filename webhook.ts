@@ -13,6 +13,12 @@ function diskLog(message: string) {
     fs.appendFileSync('./slack-debug.log', `[${new Date().toISOString()}] ${message}\n`)
 }
 
+process.on('uncaughtException', (err) => {
+    diskLog(`[Process] Uncaught Exception: ${err}`);
+});
+process.on('unhandledRejection', (reason) => {
+    diskLog(`[Process] Unhandled Rejection: ${reason}`);
+});
 
 // Create the MCP server and declare it as a channel
 const mcp = new Server(
